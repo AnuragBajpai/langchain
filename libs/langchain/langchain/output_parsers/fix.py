@@ -126,6 +126,9 @@ class OutputFixingParser(BaseOutputParser[T]):
 
         raise OutputParserException("Failed to parse")
 
+    async def aparse_result(self, result: Any, *, partial: bool = False) -> T:
+        return await self.aparse(result[0].text)
+
     def get_format_instructions(self) -> str:
         return self.parser.get_format_instructions()
 
